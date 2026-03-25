@@ -160,46 +160,46 @@ function Hero() {
         </div>
 
         {/* Right Column: Mockups */}
-        <div className="relative w-full mt-12 lg:mt-0 flex items-center justify-center" style={{ height: '480px' }}>
-          <div className="relative" style={{ width: '460px', height: '440px' }}>
+        <div className="relative h-[400px] sm:h-[500px] lg:h-[600px] xl:h-[700px] w-full mt-12 lg:mt-0 flex items-center justify-center">
+          <div className="relative w-full max-w-[500px] lg:max-w-[700px] xl:max-w-[800px] aspect-square flex items-center justify-center">
 
-            {/* PC Mockup — top-left */}
+            {/* PC Mockup */}
             <motion.div
               initial={{ opacity: 0, x: -30, y: -30 }}
               animate={{ opacity: 1, x: 0, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              whileHover={{ zIndex: 30, transition: { duration: 0 } }}
-              style={{ position: 'absolute', top: '0px', left: '0px', width: '320px', zIndex: 10, cursor: 'pointer' }}
+              whileHover={{ zIndex: 30, scale: 1.02, transition: { duration: 0.2 } }}
+              className="absolute left-0 lg:-left-10 top-[15%] w-[80%] lg:w-[85%] z-10 cursor-pointer"
             >
-              <div style={{ width: '100%', aspectRatio: '16/10', background: '#27272a', borderRadius: '14px', border: '1px solid #3f3f46', padding: '6px', boxShadow: '0 20px 50px -10px rgba(0,0,0,0.9)' }}>
-                <div style={{ width: '100%', height: '100%', background: '#09090b', borderRadius: '8px', overflow: 'hidden', position: 'relative' }}>
+              <div className="w-full aspect-[16/10] bg-zinc-800 rounded-xl sm:rounded-2xl border border-zinc-700 p-1.5 sm:p-2 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.9)]">
+                <div className="w-full h-full bg-zinc-950 rounded-lg overflow-hidden relative">
                   <video
                     src="/videos/hero/pc.mp4"
-                    style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain' }}
+                    className="absolute inset-0 w-full h-full object-contain"
                     autoPlay muted playsInline
                     onTimeUpdate={(e) => { const v = e.currentTarget; if (v.duration && v.currentTime >= v.duration - 0.1) { v.currentTime = 0; v.play().catch(()=>{}); } }}
                   />
                 </div>
               </div>
               {/* Stand */}
-              <div style={{ width: '106%', marginLeft: '-3%', height: '12px', background: '#3f3f46', borderRadius: '0 0 8px 8px' }} />
-              <div style={{ width: '28%', margin: '0 auto', height: '8px', background: '#52525b', borderRadius: '0 0 5px 5px' }} />
+              <div className="w-[106%] -ml-[3%] h-3 sm:h-4 bg-zinc-700 rounded-b-lg sm:rounded-b-xl shadow-xl" />
+              <div className="w-[28%] mx-auto h-2 sm:h-3 bg-zinc-600 rounded-b-md" />
             </motion.div>
 
-            {/* Phone Mockup — bottom-right, overlapping PC slightly */}
+            {/* Phone Mockup */}
             <motion.div
               initial={{ opacity: 0, x: 30, y: 30 }}
               animate={{ opacity: 1, x: 0, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              whileHover={{ zIndex: 30, transition: { duration: 0 } }}
-              style={{ position: 'absolute', bottom: '0px', right: '0px', width: '150px', zIndex: 20, cursor: 'pointer' }}
+              whileHover={{ zIndex: 30, scale: 1.02, transition: { duration: 0.2 } }}
+              className="absolute right-0 lg:-right-4 bottom-[5%] lg:bottom-[10%] w-[35%] lg:w-[32%] z-20 cursor-pointer"
             >
-              <div style={{ width: '100%', aspectRatio: '9/16', background: '#18181b', borderRadius: '28px', border: '5px solid #27272a', padding: '5px', boxShadow: '0 20px 50px -10px rgba(0,0,0,0.9)', position: 'relative' }}>
-                <div style={{ position: 'absolute', top: '10px', left: '50%', transform: 'translateX(-50%)', width: '12px', height: '12px', background: '#000', borderRadius: '50%', zIndex: 5 }} />
-                <div style={{ width: '100%', height: '100%', background: '#09090b', borderRadius: '22px', overflow: 'hidden', position: 'relative' }}>
+              <div className="w-full aspect-[9/16] bg-zinc-900 rounded-[2rem] sm:rounded-[2.5rem] border-[4px] sm:border-[6px] border-zinc-800 p-1 sm:p-1.5 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.9)] relative">
+                <div className="absolute top-2 sm:top-4 left-1/2 -translate-x-1/2 w-3 h-3 sm:w-4 sm:h-4 bg-black rounded-full z-10" />
+                <div className="w-full h-full bg-zinc-950 rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden relative">
                   <video
                     src="/videos/hero/mobile.mp4"
-                    style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain' }}
+                    className="absolute inset-0 w-full h-full object-contain"
                     autoPlay muted playsInline
                     onTimeUpdate={(e) => { const v = e.currentTarget; if (v.duration && v.currentTime >= v.duration - 0.1) { v.currentTime = 0; v.play().catch(()=>{}); } }}
                   />
