@@ -172,7 +172,7 @@ function Hero() {
               <div className="w-full h-full bg-zinc-950 rounded-lg overflow-hidden relative">
                 <video 
                   src="/videos/hero/pc.mp4" 
-                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+                  className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500"
                   autoPlay
                   muted 
                   playsInline
@@ -187,7 +187,7 @@ function Hero() {
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.8 }}
-              className="absolute top-[45%] left-[55%] -translate-x-1/2 -translate-y-1/2 z-20 text-cyan-400 rotate-[-15deg] drop-shadow-[0_0_30px_rgba(6,182,212,0.9)]"
+              className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 z-40 text-cyan-400 rotate-45 drop-shadow-[0_0_30px_rgba(6,182,212,0.9)]"
             >
               <Paperclip className="w-20 h-20 sm:w-32 sm:h-32" strokeWidth={1.5} />
             </motion.div>
@@ -203,7 +203,7 @@ function Hero() {
                 <div className="absolute top-2 sm:top-4 left-1/2 -translate-x-1/2 w-3 h-3 sm:w-4 sm:h-4 bg-black rounded-full z-30"></div>
                 <video 
                   src="/videos/hero/mobile.mp4" 
-                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+                  className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500"
                   autoPlay
                   muted 
                   playsInline
