@@ -96,47 +96,6 @@ function Navbar() {
 }
 
 function Hero() {
-  const pcVideoRef = useRef<HTMLVideoElement>(null);
-  const mobileVideoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const pcVid = pcVideoRef.current;
-    const mobileVid = mobileVideoRef.current;
-
-    if (!pcVid || !mobileVid) return;
-
-    let pcReady = pcVid.readyState >= 3;
-    let mobileReady = mobileVid.readyState >= 3;
-
-    // Force play immediately as fallback
-    pcVid.play().catch(() => {});
-    mobileVid.play().catch(() => {});
-
-    const trySyncAndPlay = () => {
-      if (pcReady && mobileReady) {
-        pcVid.currentTime = 0;
-        mobileVid.currentTime = 0;
-        pcVid.play().catch(e => console.log("PC Play prevented", e));
-        mobileVid.play().catch(e => console.log("Mobile Play prevented", e));
-      }
-    };
-
-    const onPcReady = () => { pcReady = true; trySyncAndPlay(); };
-    const onMobileReady = () => { mobileReady = true; trySyncAndPlay(); };
-
-    if (!pcReady) pcVid.addEventListener('canplay', onPcReady);
-    if (!mobileReady) mobileVid.addEventListener('canplay', onMobileReady);
-
-    if (pcReady && mobileReady) {
-      trySyncAndPlay();
-    }
-
-    return () => {
-      pcVid.removeEventListener('canplay', onPcReady);
-      mobileVid.removeEventListener('canplay', onMobileReady);
-    };
-  }, []);
-
   return (
     <section className="pt-32 pb-16 px-6 relative flex flex-col lg:flex-row items-center justify-center min-h-screen bg-[#0B0B0B] overflow-hidden">
       {/* Ambient Background Glow */}
@@ -202,23 +161,22 @@ function Hero() {
 
         {/* Right Column: Mockups */}
         <div className="relative h-[450px] sm:h-[600px] lg:h-[700px] w-full mt-12 lg:mt-0 flex flex-col items-center justify-center">
-          <div className="relative w-full max-w-[500px] aspect-square">
+          <div className="relative w-full max-w-[550px] aspect-square flex items-center justify-center">
             {/* PC Mockup */}
             <motion.div 
               initial={{ opacity: 0, x: -50, y: -50 }}
               animate={{ opacity: 1, x: 0, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="absolute top-0 left-0 w-[70%] sm:w-[75%] aspect-[16/10] bg-zinc-800 rounded-2xl border border-zinc-700 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] p-1.5 sm:p-2 z-10"
+              className="absolute top-[10%] left-[5%] w-[75%] aspect-[16/10] bg-zinc-800 rounded-2xl border border-zinc-700 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] p-1.5 sm:p-2 z-10"
             >
               <div className="w-full h-full bg-zinc-950 rounded-lg overflow-hidden relative">
                 <video 
-                  ref={pcVideoRef}
                   src="/videos/hero/pc.mp4" 
                   className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
                   autoPlay
                   muted 
-                  loop 
                   playsInline
+                  onTimeUpdate={(e) => { const v = e.currentTarget; if (v.duration && v.currentTime >= v.duration - 0.1) { v.currentTime = 0; v.play().catch(()=>{}); } }}
                 />
               </div>
               <div className="absolute -bottom-3 sm:-bottom-4 left-1/2 -translate-x-1/2 w-[110%] h-3 sm:h-4 bg-zinc-700 rounded-b-xl shadow-xl"></div>
@@ -229,9 +187,9 @@ function Hero() {
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.8 }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 text-cyan-400 rotate-90 drop-shadow-[0_0_20px_rgba(6,182,212,0.8)]"
+              className="absolute top-[45%] left-[55%] -translate-x-1/2 -translate-y-1/2 z-20 text-cyan-400 rotate-[-15deg] drop-shadow-[0_0_30px_rgba(6,182,212,0.9)]"
             >
-              <Paperclip className="w-16 h-16 sm:w-24 sm:h-24" />
+              <Paperclip className="w-20 h-20 sm:w-32 sm:h-32" strokeWidth={1.5} />
             </motion.div>
 
             {/* Android Mockup */}
@@ -239,18 +197,17 @@ function Hero() {
               initial={{ opacity: 0, x: 50, y: 50 }}
               animate={{ opacity: 1, x: 0, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="absolute bottom-0 right-[5%] sm:right-[10%] w-[35%] sm:w-[35%] aspect-[9/19] bg-zinc-900 rounded-[2rem] sm:rounded-[2.5rem] border-[4px] sm:border-[6px] border-zinc-800 p-1 sm:p-1.5 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.9)] z-30 transform"
+              className="absolute bottom-[2%] right-[2%] w-[33%] aspect-[9/19] bg-zinc-900 rounded-[2rem] sm:rounded-[2.5rem] border-[4px] sm:border-[6px] border-zinc-800 p-1 sm:p-1.5 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.9)] z-30 transform"
             >
               <div className="w-full h-full bg-zinc-950 rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden relative">
                 <div className="absolute top-2 sm:top-4 left-1/2 -translate-x-1/2 w-3 h-3 sm:w-4 sm:h-4 bg-black rounded-full z-30"></div>
                 <video 
-                  ref={mobileVideoRef}
                   src="/videos/hero/mobile.mp4" 
                   className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
                   autoPlay
                   muted 
-                  loop 
                   playsInline
+                  onTimeUpdate={(e) => { const v = e.currentTarget; if (v.duration && v.currentTime >= v.duration - 0.1) { v.currentTime = 0; v.play().catch(()=>{}); } }}
                 />
               </div>
             </motion.div>
@@ -311,8 +268,8 @@ function FeatureCard({ title, description, videoSrc, orientation }: { title: str
           className="absolute inset-0 w-full h-full object-contain"
           autoPlay
           muted 
-          loop 
           playsInline
+          onTimeUpdate={(e) => { const v = e.currentTarget; if (v.duration && v.currentTime >= v.duration - 0.1) { v.currentTime = 0; v.play().catch(()=>{}); } }}
         />
       </div>
     </motion.div>
