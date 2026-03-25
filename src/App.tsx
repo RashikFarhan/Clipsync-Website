@@ -160,57 +160,72 @@ function Hero() {
         </div>
 
         {/* Right Column: Mockups */}
-        <div className="relative h-[450px] sm:h-[600px] lg:h-[700px] w-full mt-12 lg:mt-0 flex flex-col items-center justify-center">
-          <div className="relative w-full max-w-[550px] aspect-square flex items-center justify-center">
-            {/* PC Mockup */}
-            <motion.div 
-              initial={{ opacity: 0, x: -50, y: -50 }}
+        <div className="relative w-full mt-12 lg:mt-0 flex items-center justify-center" style={{ height: '520px' }}>
+          {/* Outer container sized to fit both devices */}
+          <div className="relative" style={{ width: '480px', height: '480px' }}>
+
+            {/* PC Mockup — top-left, z-10 (behind clip) */}
+            <motion.div
+              initial={{ opacity: 0, x: -40, y: -40 }}
               animate={{ opacity: 1, x: 0, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="absolute top-[10%] left-[5%] w-[75%] aspect-[16/10] bg-zinc-800 rounded-2xl border border-zinc-700 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] p-1.5 sm:p-2 z-10"
+              style={{ position: 'absolute', top: '0px', left: '0px', width: '300px', zIndex: 10 }}
             >
-              <div className="w-full h-full bg-zinc-950 rounded-lg overflow-hidden relative">
-                <video 
-                  src="/videos/hero/pc.mp4" 
-                  className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500"
-                  autoPlay
-                  muted 
-                  playsInline
-                  onTimeUpdate={(e) => { const v = e.currentTarget; if (v.duration && v.currentTime >= v.duration - 0.1) { v.currentTime = 0; v.play().catch(()=>{}); } }}
-                />
+              {/* Screen body */}
+              <div style={{ width: '100%', aspectRatio: '16/10', background: '#27272a', borderRadius: '14px', border: '1px solid #3f3f46', padding: '6px', boxShadow: '0 30px 60px -15px rgba(0,0,0,0.8)' }}>
+                <div style={{ width: '100%', height: '100%', background: '#09090b', borderRadius: '8px', overflow: 'hidden', position: 'relative' }}>
+                  <video
+                    src="/videos/hero/pc.mp4"
+                    style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain' }}
+                    autoPlay muted playsInline
+                    onTimeUpdate={(e) => { const v = e.currentTarget; if (v.duration && v.currentTime >= v.duration - 0.1) { v.currentTime = 0; v.play().catch(()=>{}); } }}
+                  />
+                </div>
               </div>
-              <div className="absolute -bottom-3 sm:-bottom-4 left-1/2 -translate-x-1/2 w-[110%] h-3 sm:h-4 bg-zinc-700 rounded-b-xl shadow-xl"></div>
+              {/* Monitor stand */}
+              <div style={{ margin: '0 auto', width: '110%', height: '14px', background: '#3f3f46', borderRadius: '0 0 10px 10px', marginLeft: '-5%', boxShadow: '0 10px 20px rgba(0,0,0,0.5)' }} />
+              <div style={{ margin: '0 auto', width: '30%', height: '10px', background: '#52525b', borderRadius: '0 0 6px 6px' }} />
             </motion.div>
 
-            {/* Connecting Clip Visual */}
+            {/* Paperclip — centered diagonally at 45°, z-20 (above PC, below phone) */}
             <motion.div
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.8 }}
-              className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 z-40 text-cyan-400 rotate-45 drop-shadow-[0_0_30px_rgba(6,182,212,0.9)]"
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%) rotate(45deg)',
+                zIndex: 20,
+                color: '#22d3ee',
+                filter: 'drop-shadow(0 0 20px rgba(6,182,212,0.8))',
+              }}
             >
-              <Paperclip className="w-20 h-20 sm:w-32 sm:h-32" strokeWidth={1.5} />
+              <Paperclip style={{ width: '140px', height: '140px' }} strokeWidth={1.2} />
             </motion.div>
 
-            {/* Android Mockup */}
-            <motion.div 
-              initial={{ opacity: 0, x: 50, y: 50 }}
+            {/* Phone Mockup — bottom-right, z-30 (in front of clip) */}
+            <motion.div
+              initial={{ opacity: 0, x: 40, y: 40 }}
               animate={{ opacity: 1, x: 0, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="absolute bottom-[2%] right-[2%] w-[33%] aspect-[9/19] bg-zinc-900 rounded-[2rem] sm:rounded-[2.5rem] border-[4px] sm:border-[6px] border-zinc-800 p-1 sm:p-1.5 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.9)] z-30 transform"
+              style={{ position: 'absolute', bottom: '0px', right: '0px', width: '140px', aspectRatio: '9/16', zIndex: 30 }}
             >
-              <div className="w-full h-full bg-zinc-950 rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden relative">
-                <div className="absolute top-2 sm:top-4 left-1/2 -translate-x-1/2 w-3 h-3 sm:w-4 sm:h-4 bg-black rounded-full z-30"></div>
-                <video 
-                  src="/videos/hero/mobile.mp4" 
-                  className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500"
-                  autoPlay
-                  muted 
-                  playsInline
-                  onTimeUpdate={(e) => { const v = e.currentTarget; if (v.duration && v.currentTime >= v.duration - 0.1) { v.currentTime = 0; v.play().catch(()=>{}); } }}
-                />
+              <div style={{ width: '100%', aspectRatio: '9/16', background: '#18181b', borderRadius: '28px', border: '5px solid #27272a', padding: '5px', boxShadow: '0 30px 60px -15px rgba(0,0,0,0.9)', position: 'relative' }}>
+                {/* Front camera notch */}
+                <div style={{ position: 'absolute', top: '10px', left: '50%', transform: 'translateX(-50%)', width: '14px', height: '14px', background: '#000', borderRadius: '50%', zIndex: 5 }} />
+                <div style={{ width: '100%', height: '100%', background: '#09090b', borderRadius: '22px', overflow: 'hidden', position: 'relative' }}>
+                  <video
+                    src="/videos/hero/mobile.mp4"
+                    style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain' }}
+                    autoPlay muted playsInline
+                    onTimeUpdate={(e) => { const v = e.currentTarget; if (v.duration && v.currentTime >= v.duration - 0.1) { v.currentTime = 0; v.play().catch(()=>{}); } }}
+                  />
+                </div>
               </div>
             </motion.div>
+
           </div>
         </div>
 
