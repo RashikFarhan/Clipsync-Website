@@ -27,14 +27,6 @@ import {
   Paperclip
 } from 'lucide-react';
 
-import logoSrc from '../assets/logo/nobg/Web/android-chrome-512x512.png';
-import pcVidSrc from '../assets/hero section videos/Pc.mp4';
-import mobileVidSrc from '../assets/hero section videos/Mobile.mp4';
-import feature1Vid from '../assets/features video/quick paste overlay.mp4';
-import feature2Vid from '../assets/features video/smart pin delete.mp4';
-import feature3Vid from '../assets/features video/seamless mesh.mp4';
-import feature4Vid from '../assets/features video/Foreign network.mp4';
-
 function FloatingClips() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -76,7 +68,7 @@ function FloatingClips() {
 
 function Logo({ className = "w-8 h-8" }: { className?: string }) {
   return (
-    <img src={logoSrc} alt="ClipSync Logo" className={className} />
+    <img src="/logo/nobg/Web/android-chrome-512x512.png" alt="ClipSync Logo" className={className} />
   );
 }
 
@@ -209,60 +201,60 @@ function Hero() {
         </div>
 
         {/* Right Column: Mockups */}
-        <div className="relative h-[500px] sm:h-[600px] lg:h-[700px] w-full mt-12 lg:mt-0 flex items-center justify-center">
-          {/* PC Mockup */}
-          <motion.div 
-            initial={{ opacity: 0, x: -50, y: -50 }}
-            animate={{ opacity: 1, x: 0, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            whileHover={{ scale: 1.05, zIndex: 50 }}
-            className="absolute top-[10%] left-[10%] sm:left-[20%] lg:left-[10%] w-[280px] sm:w-[360px] lg:w-[420px] aspect-[16/10] bg-zinc-800 rounded-2xl border border-zinc-700 shadow-2xl p-1.5 sm:p-2 cursor-pointer transition-all duration-500 ease-out group z-10"
-          >
-            <div className="w-full h-full bg-zinc-950 rounded-lg overflow-hidden relative">
-              <video 
-                ref={pcVideoRef}
-                src={pcVidSrc} 
-                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
-                autoPlay
-                muted 
-                loop 
-                playsInline
-              />
-            </div>
-            <div className="absolute -bottom-3 sm:-bottom-4 left-1/2 -translate-x-1/2 w-[110%] h-3 sm:h-4 bg-zinc-700 rounded-b-xl shadow-xl"></div>
-          </motion.div>
+        <div className="relative h-[450px] sm:h-[600px] lg:h-[700px] w-full mt-12 lg:mt-0 flex flex-col items-center justify-center">
+          <div className="relative w-full max-w-[500px] aspect-square">
+            {/* PC Mockup */}
+            <motion.div 
+              initial={{ opacity: 0, x: -50, y: -50 }}
+              animate={{ opacity: 1, x: 0, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="absolute top-0 left-0 w-[70%] sm:w-[75%] aspect-[16/10] bg-zinc-800 rounded-2xl border border-zinc-700 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] p-1.5 sm:p-2 z-10"
+            >
+              <div className="w-full h-full bg-zinc-950 rounded-lg overflow-hidden relative">
+                <video 
+                  ref={pcVideoRef}
+                  src="/videos/hero/pc.mp4" 
+                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+                  autoPlay
+                  muted 
+                  loop 
+                  playsInline
+                />
+              </div>
+              <div className="absolute -bottom-3 sm:-bottom-4 left-1/2 -translate-x-1/2 w-[110%] h-3 sm:h-4 bg-zinc-700 rounded-b-xl shadow-xl"></div>
+            </motion.div>
 
-          {/* Connecting Clip Visual */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-            className="absolute top-[48%] sm:top-[45%] left-[45%] sm:left-[55%] lg:left-[55%] z-20 text-cyan-400 rotate-45 drop-shadow-[0_0_15px_rgba(6,182,212,0.5)]"
-          >
-            <Paperclip className="w-10 h-10 sm:w-16 sm:h-16" />
-          </motion.div>
+            {/* Connecting Clip Visual */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 text-cyan-400 rotate-90 drop-shadow-[0_0_20px_rgba(6,182,212,0.8)]"
+            >
+              <Paperclip className="w-16 h-16 sm:w-24 sm:h-24" />
+            </motion.div>
 
-          {/* Android Mockup */}
-          <motion.div 
-            initial={{ opacity: 0, x: 50, y: 50 }}
-            animate={{ opacity: 1, x: 0, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            whileHover={{ scale: 1.05, zIndex: 50 }}
-            className="absolute bottom-[5%] right-[5%] sm:right-[15%] lg:right-[5%] w-[120px] sm:w-[150px] lg:w-[180px] aspect-[9/19] bg-zinc-900 rounded-[2rem] sm:rounded-[2.5rem] border-[4px] sm:border-[6px] border-zinc-800 p-1 sm:p-1.5 shadow-2xl cursor-pointer transition-all duration-500 ease-out group z-30 transform translate-x-10 translate-y-10"
-          >
-            <div className="w-full h-full bg-zinc-950 rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden relative">
-              <div className="absolute top-2 sm:top-4 left-1/2 -translate-x-1/2 w-3 h-3 sm:w-4 sm:h-4 bg-black rounded-full z-30"></div>
-              <video 
-                ref={mobileVideoRef}
-                src={mobileVidSrc} 
-                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
-                autoPlay
-                muted 
-                loop 
-                playsInline
-              />
-            </div>
-          </motion.div>
+            {/* Android Mockup */}
+            <motion.div 
+              initial={{ opacity: 0, x: 50, y: 50 }}
+              animate={{ opacity: 1, x: 0, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="absolute bottom-0 right-[5%] sm:right-[10%] w-[35%] sm:w-[35%] aspect-[9/19] bg-zinc-900 rounded-[2rem] sm:rounded-[2.5rem] border-[4px] sm:border-[6px] border-zinc-800 p-1 sm:p-1.5 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.9)] z-30 transform"
+            >
+              <div className="w-full h-full bg-zinc-950 rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden relative">
+                <div className="absolute top-2 sm:top-4 left-1/2 -translate-x-1/2 w-3 h-3 sm:w-4 sm:h-4 bg-black rounded-full z-30"></div>
+                <video 
+                  ref={mobileVideoRef}
+                  src="/videos/hero/mobile.mp4" 
+                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+                  autoPlay
+                  muted 
+                  loop 
+                  playsInline
+                />
+              </div>
+            </motion.div>
+          </div>
         </div>
 
       </div>
@@ -335,25 +327,25 @@ function VisualFeaturesGrid() {
           <FeatureCard
             title="Quick-Paste Overlay"
             description="Instant Access. Zero Friction. Trigger the vault with a Windows hotkey or an Android Quick Settings Tile. Paste your history without leaving your active app."
-            videoSrc={feature1Vid}
+            videoSrc="/videos/features/quick-paste-overlay.mp4"
             orientation="portrait"
           />
           <FeatureCard
             title="Smart Pinning & Vault"
             description="Essential Snippets, Always Ready. Pin frequently used links, addresses, or code blocks. Store up to 50 items locally in a high-speed SQLite database."
-            videoSrc={feature2Vid}
+            videoSrc="/videos/features/smart-pin-delete.mp4"
             orientation="portrait"
           />
           <FeatureCard
             title="Seamless Mesh Sync"
             description="One Network. Infinite Devices. Create a secure P2P mesh connecting all your Android and Windows hardware simultaneously. Copy once, sync everywhere instantly."
-            videoSrc={feature3Vid}
+            videoSrc="/videos/features/seamless-mesh.mp4"
             orientation="landscape"
           />
           <FeatureCard
             title="Foreign Network Sync"
             description="Connect Anywhere. Our WebRTC and MQTT signaling allow devices to find each other even on different, restricted, or foreign networks."
-            videoSrc={feature4Vid}
+            videoSrc="/videos/features/foreign-network.mp4"
             orientation="landscape"
           />
         </div>
