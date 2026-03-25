@@ -160,19 +160,18 @@ function Hero() {
         </div>
 
         {/* Right Column: Mockups */}
-        <div className="relative w-full mt-12 lg:mt-0 flex items-center justify-center" style={{ height: '520px' }}>
-          {/* Outer container sized to fit both devices */}
-          <div className="relative" style={{ width: '480px', height: '480px' }}>
+        <div className="relative w-full mt-12 lg:mt-0 flex items-center justify-center" style={{ height: '480px' }}>
+          <div className="relative" style={{ width: '460px', height: '440px' }}>
 
-            {/* PC Mockup — top-left, z-10 (behind clip) */}
+            {/* PC Mockup — top-left */}
             <motion.div
-              initial={{ opacity: 0, x: -40, y: -40 }}
+              initial={{ opacity: 0, x: -30, y: -30 }}
               animate={{ opacity: 1, x: 0, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              style={{ position: 'absolute', top: '0px', left: '0px', width: '300px', zIndex: 10 }}
+              whileHover={{ zIndex: 30, transition: { duration: 0 } }}
+              style={{ position: 'absolute', top: '0px', left: '0px', width: '320px', zIndex: 10, cursor: 'pointer' }}
             >
-              {/* Screen body */}
-              <div style={{ width: '100%', aspectRatio: '16/10', background: '#27272a', borderRadius: '14px', border: '1px solid #3f3f46', padding: '6px', boxShadow: '0 30px 60px -15px rgba(0,0,0,0.8)' }}>
+              <div style={{ width: '100%', aspectRatio: '16/10', background: '#27272a', borderRadius: '14px', border: '1px solid #3f3f46', padding: '6px', boxShadow: '0 20px 50px -10px rgba(0,0,0,0.9)' }}>
                 <div style={{ width: '100%', height: '100%', background: '#09090b', borderRadius: '8px', overflow: 'hidden', position: 'relative' }}>
                   <video
                     src="/videos/hero/pc.mp4"
@@ -182,39 +181,21 @@ function Hero() {
                   />
                 </div>
               </div>
-              {/* Monitor stand */}
-              <div style={{ margin: '0 auto', width: '110%', height: '14px', background: '#3f3f46', borderRadius: '0 0 10px 10px', marginLeft: '-5%', boxShadow: '0 10px 20px rgba(0,0,0,0.5)' }} />
-              <div style={{ margin: '0 auto', width: '30%', height: '10px', background: '#52525b', borderRadius: '0 0 6px 6px' }} />
+              {/* Stand */}
+              <div style={{ width: '106%', marginLeft: '-3%', height: '12px', background: '#3f3f46', borderRadius: '0 0 8px 8px' }} />
+              <div style={{ width: '28%', margin: '0 auto', height: '8px', background: '#52525b', borderRadius: '0 0 5px 5px' }} />
             </motion.div>
 
-            {/* Paperclip — centered diagonally at 45°, z-20 (above PC, below phone) */}
+            {/* Phone Mockup — bottom-right, overlapping PC slightly */}
             <motion.div
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.8 }}
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%) rotate(45deg)',
-                zIndex: 20,
-                color: '#22d3ee',
-                filter: 'drop-shadow(0 0 20px rgba(6,182,212,0.8))',
-              }}
-            >
-              <Paperclip style={{ width: '140px', height: '140px' }} strokeWidth={1.2} />
-            </motion.div>
-
-            {/* Phone Mockup — bottom-right, z-30 (in front of clip) */}
-            <motion.div
-              initial={{ opacity: 0, x: 40, y: 40 }}
+              initial={{ opacity: 0, x: 30, y: 30 }}
               animate={{ opacity: 1, x: 0, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              style={{ position: 'absolute', bottom: '0px', right: '0px', width: '140px', aspectRatio: '9/16', zIndex: 30 }}
+              whileHover={{ zIndex: 30, transition: { duration: 0 } }}
+              style={{ position: 'absolute', bottom: '0px', right: '0px', width: '150px', zIndex: 20, cursor: 'pointer' }}
             >
-              <div style={{ width: '100%', aspectRatio: '9/16', background: '#18181b', borderRadius: '28px', border: '5px solid #27272a', padding: '5px', boxShadow: '0 30px 60px -15px rgba(0,0,0,0.9)', position: 'relative' }}>
-                {/* Front camera notch */}
-                <div style={{ position: 'absolute', top: '10px', left: '50%', transform: 'translateX(-50%)', width: '14px', height: '14px', background: '#000', borderRadius: '50%', zIndex: 5 }} />
+              <div style={{ width: '100%', aspectRatio: '9/16', background: '#18181b', borderRadius: '28px', border: '5px solid #27272a', padding: '5px', boxShadow: '0 20px 50px -10px rgba(0,0,0,0.9)', position: 'relative' }}>
+                <div style={{ position: 'absolute', top: '10px', left: '50%', transform: 'translateX(-50%)', width: '12px', height: '12px', background: '#000', borderRadius: '50%', zIndex: 5 }} />
                 <div style={{ width: '100%', height: '100%', background: '#09090b', borderRadius: '22px', overflow: 'hidden', position: 'relative' }}>
                   <video
                     src="/videos/hero/mobile.mp4"
