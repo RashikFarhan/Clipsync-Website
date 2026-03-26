@@ -574,11 +574,11 @@ function Pricing() {
         <p className="text-xl text-zinc-400 leading-relaxed mb-8">
           Currently in Public Beta, all ClipSync features are completely free to use. Join us on our journey.
         </p>
-        <p className="text-zinc-300 mb-4 font-medium">Want to donate to the dev?</p>
+        {/* <p className="text-zinc-300 mb-4 font-medium">Want to donate to the dev?</p>
         <a href="https://buymeacoffee.com" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 bg-[#FFDD00] hover:bg-[#FFDD00]/90 text-black px-6 py-3 rounded-xl font-bold transition-colors">
           <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M20.216 10.281c.026-.184.044-.37.044-.562 0-2.072-1.609-3.75-3.594-3.75H16V4.5C16 3.673 15.327 3 14.5 3h-9C4.673 3 4 3.673 4 4.5v10C4 15.327 4.673 16 5.5 16h9c.827 0 1.5-.673 1.5-1.5v-1.031h.668c1.985 0 3.594-1.678 3.594-3.75.001-.192-.017-.378-.046-.562zM14.5 14.5h-9v-10h9v10zm2.168-2.531H16V5.469h.668c1.158 0 2.094.982 2.094 2.188 0 1.205-.936 2.188-2.094 2.188zM4 18h12v1.5H4z"/></svg>
           Buy Me a Coffee
-        </a>
+        </a> */}
       </motion.div>
     </section>
   );
