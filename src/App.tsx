@@ -86,7 +86,7 @@ function Navbar() {
           <a href="#features" className="hover:text-white transition-colors">Features</a>
           <a href="#upcoming" className="hover:text-white transition-colors">Upcoming</a>
           <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
-          <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-white transition-colors flex items-center gap-2">
+          <a href="https://github.com/RashikFarhan/ClipSync" target="_blank" rel="noreferrer" className="hover:text-white transition-colors flex items-center gap-2">
             <Github className="w-4 h-4" /> GitHub Repository
           </a>
         </div>
@@ -96,6 +96,35 @@ function Navbar() {
 }
 
 function Hero() {
+  const [pcIndex, setPcIndex] = useState(0);
+  const [mobileIndex, setMobileIndex] = useState(0);
+
+  const pcSlides = [
+    "/hero-slides/Pc/2026-03-25 10-03-01.png",
+    "/hero-slides/Pc/2026-03-25 10-03-03.png",
+    "/hero-slides/Pc/2026-03-25 10-03-05.png",
+  ];
+
+  const mobileSlides = [
+    "/hero-slides/mobile/2026-03-25 10-04-03.png",
+    "/hero-slides/mobile/2026-03-25 10-04-06.png",
+    "/hero-slides/mobile/2026-03-25 10-04-13.png",
+    "/hero-slides/mobile/2026-03-25 10-04-15.png",
+  ];
+
+  useEffect(() => {
+    const pcTimer = setInterval(() => {
+      setPcIndex((prev) => (prev + 1) % pcSlides.length);
+    }, 4000);
+    const mobileTimer = setInterval(() => {
+      setMobileIndex((prev) => (prev + 1) % mobileSlides.length);
+    }, 4000);
+    return () => {
+      clearInterval(pcTimer);
+      clearInterval(mobileTimer);
+    };
+  }, [pcSlides.length, mobileSlides.length]);
+
   return (
     <section className="pt-32 pb-16 px-6 relative flex flex-col lg:flex-row items-center justify-center min-h-screen bg-[#0B0B0B] overflow-hidden">
       {/* Ambient Background Glow */}
@@ -112,10 +141,10 @@ function Hero() {
             transition={{ duration: 0.5 }}
             className="flex items-center gap-4 mb-10"
           >
-            <a href="https://github.com" target="_blank" rel="noreferrer" className="flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 border border-white/10 px-4 py-2 rounded-full text-sm font-medium text-zinc-300 transition-colors">
-              <Star className="w-4 h-4 text-yellow-500" /> Star <span className="text-white font-semibold">1.2k</span>
+            <a href="https://github.com/RashikFarhan/ClipSync" target="_blank" rel="noreferrer" className="flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 border border-white/10 px-4 py-2 rounded-full text-sm font-medium text-zinc-300 transition-colors">
+              <Star className="w-4 h-4 text-yellow-500" /> Star on GitHub
             </a>
-            <a href="https://github.com" target="_blank" rel="noreferrer" className="flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 border border-white/10 px-4 py-2 rounded-full text-sm font-medium text-zinc-300 transition-colors">
+            <a href="https://github.com/RashikFarhan/ClipSync" target="_blank" rel="noreferrer" className="flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 border border-white/10 px-4 py-2 rounded-full text-sm font-medium text-zinc-300 transition-colors">
               <Github className="w-4 h-4" /> View Repository
             </a>
           </motion.div>
@@ -144,17 +173,17 @@ function Hero() {
           >
             <div className="flex flex-col items-center lg:items-start gap-2 w-full sm:w-auto">
               <span className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">Download (Free Beta)</span>
-              <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-cyan-500 hover:bg-cyan-400 text-zinc-950 px-8 py-4 rounded-xl font-bold transition-colors shadow-[0_0_20px_rgba(6,182,212,0.2)]">
+              <a href="https://github.com/RashikFarhan/ClipSync/releases" target="_blank" rel="noreferrer" className="w-full sm:w-auto flex items-center justify-center gap-2 bg-cyan-500 hover:bg-cyan-400 text-zinc-950 px-8 py-4 rounded-xl font-bold transition-colors shadow-[0_0_20px_rgba(6,182,212,0.2)]">
                 <Monitor className="w-5 h-5" />
                 Download for Windows
-              </button>
+              </a>
             </div>
             <div className="flex flex-col items-center lg:items-start gap-2 w-full sm:w-auto">
               <span className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">Download (Free Beta)</span>
-              <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-zinc-100 hover:bg-white text-zinc-950 px-8 py-4 rounded-xl font-bold transition-colors">
+              <a href="https://github.com/RashikFarhan/ClipSync/releases" target="_blank" rel="noreferrer" className="w-full sm:w-auto flex items-center justify-center gap-2 bg-zinc-100 hover:bg-white text-zinc-950 px-8 py-4 rounded-xl font-bold transition-colors">
                 <Smartphone className="w-5 h-5" />
                 Download for Android
-              </button>
+              </a>
             </div>
           </motion.div>
         </div>
@@ -173,12 +202,17 @@ function Hero() {
             >
               <div className="w-full aspect-[16/10] bg-zinc-800 rounded-xl sm:rounded-2xl border border-zinc-700 p-1.5 sm:p-2 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.9)]">
                 <div className="w-full h-full bg-zinc-950 rounded-lg overflow-hidden relative">
-                  <video
-                    src="/videos/hero/pc.mp4"
-                    className="absolute inset-0 w-full h-full object-contain"
-                    autoPlay muted playsInline
-                    onTimeUpdate={(e) => { const v = e.currentTarget; if (v.duration && v.currentTime >= v.duration - 0.1) { v.currentTime = 0; v.play().catch(()=>{}); } }}
-                  />
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={pcIndex}
+                      src={pcSlides[pcIndex]}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.5 }}
+                      className="absolute inset-0 w-full h-full object-contain"
+                    />
+                  </AnimatePresence>
                 </div>
               </div>
               {/* Stand */}
@@ -197,12 +231,17 @@ function Hero() {
               <div className="w-full aspect-[9/16] bg-zinc-900 rounded-[2rem] sm:rounded-[2.5rem] border-[4px] sm:border-[6px] border-zinc-800 p-1 sm:p-1.5 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.9)] relative">
                 <div className="absolute top-2 sm:top-4 left-1/2 -translate-x-1/2 w-3 h-3 sm:w-4 sm:h-4 bg-black rounded-full z-10" />
                 <div className="w-full h-full bg-zinc-950 rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden relative">
-                  <video
-                    src="/videos/hero/mobile.mp4"
-                    className="absolute inset-0 w-full h-full object-contain"
-                    autoPlay muted playsInline
-                    onTimeUpdate={(e) => { const v = e.currentTarget; if (v.duration && v.currentTime >= v.duration - 0.1) { v.currentTime = 0; v.play().catch(()=>{}); } }}
-                  />
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={mobileIndex}
+                      src={mobileSlides[mobileIndex]}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.5 }}
+                      className="absolute inset-0 w-full h-full object-contain"
+                    />
+                  </AnimatePresence>
                 </div>
               </div>
             </motion.div>
@@ -477,8 +516,8 @@ function HowItWorks() {
         >
           <iframe 
             className="absolute inset-0 w-full h-full"
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=placeholder" 
-            title="YouTube video player" 
+            src="https://www.youtube.com/embed/_DND23IjXb0" 
+            title="ClipSync Showcase & Tutorial" 
             frameBorder="0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
             referrerPolicy="strict-origin-when-cross-origin" 
@@ -590,7 +629,7 @@ function Footer() {
       <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
         
         <motion.a 
-          href="https://github.com" 
+          href="https://github.com/RashikFarhan/ClipSync" 
           target="_blank" 
           rel="noreferrer" 
           whileHover={{ scale: 1.05 }}
