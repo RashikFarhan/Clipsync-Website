@@ -160,7 +160,7 @@ function Hero() {
               ClipSync.
             </h1>
             <p className="text-xl text-cyan-400 font-medium max-w-xl">
-              Copy on your phone. Paste on your PC. No cloud, no lag, just pure synchronization.
+              Sync your Clipboard across devices. Copy on your phone, Paste on your PC and vice-versa.
             </p>
           </motion.div>
 
@@ -200,7 +200,7 @@ function Hero() {
               whileHover={{ zIndex: 30, scale: 1.02, transition: { duration: 0.2 } }}
               className="absolute left-0 lg:-left-10 top-[15%] w-[80%] lg:w-[85%] z-10 cursor-pointer"
             >
-              <div className="w-full aspect-[16/10] bg-zinc-800 rounded-xl sm:rounded-2xl border border-zinc-700 p-1.5 sm:p-2 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.9)]">
+              <div className="w-full aspect-video bg-zinc-800 rounded-xl sm:rounded-2xl border border-zinc-700 p-1.5 sm:p-2 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.9)]">
                 <div className="w-full h-full bg-zinc-950 rounded-lg overflow-hidden relative">
                   <AnimatePresence mode="wait">
                     <motion.img
@@ -228,7 +228,7 @@ function Hero() {
               whileHover={{ zIndex: 30, scale: 1.02, transition: { duration: 0.2 } }}
               className="absolute right-0 lg:-right-4 bottom-[5%] lg:bottom-[10%] w-[35%] lg:w-[32%] z-20 cursor-pointer"
             >
-              <div className="w-full aspect-[9/16] bg-zinc-900 rounded-[2rem] sm:rounded-[2.5rem] border-[4px] sm:border-[6px] border-zinc-800 p-1 sm:p-1.5 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.9)] relative">
+              <div className="w-full aspect-[9/19.5] bg-zinc-900 rounded-[2rem] sm:rounded-[2.5rem] border-[4px] sm:border-[6px] border-zinc-800 p-1 sm:p-1.5 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.9)] relative">
                 <div className="absolute top-2 sm:top-4 left-1/2 -translate-x-1/2 w-3 h-3 sm:w-4 sm:h-4 bg-black rounded-full z-10" />
                 <div className="w-full h-full bg-zinc-950 rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden relative">
                   <AnimatePresence mode="wait">
@@ -297,14 +297,15 @@ function FeatureCard({ title, description, videoSrc, orientation }: { title: str
         <h3 className="text-2xl font-bold text-white mb-3">{title}</h3>
         <p className="text-zinc-400 leading-relaxed">{description}</p>
       </div>
-      <div className={`flex-1 relative rounded-xl bg-[#1A1A1A] border border-white/5 overflow-hidden flex items-center justify-center group-hover:border-cyan-500/20 transition-colors z-10 shadow-inner ${orientation === 'portrait' ? 'aspect-[9/16] max-h-[400px]' : 'aspect-video'}`}>
+      <div className={`flex-1 relative rounded-xl bg-[#1A1A1A] border border-white/5 overflow-hidden flex items-center justify-center group-hover:border-cyan-500/20 transition-colors z-10 shadow-inner ${orientation === 'portrait' ? 'aspect-[9/19.5] max-h-[400px]' : 'aspect-video'}`}>
         <video 
           src={videoSrc} 
-          className="absolute inset-0 w-full h-full object-contain"
+          className="absolute inset-0 w-full h-full object-cover"
           autoPlay
           muted 
+          loop
           playsInline
-          onTimeUpdate={(e) => { const v = e.currentTarget; if (v.duration && v.currentTime >= v.duration - 0.1) { v.currentTime = 0; v.play().catch(()=>{}); } }}
+          onCanPlay={(e) => { e.currentTarget.play().catch(() => {}); }}
         />
       </div>
     </motion.div>
